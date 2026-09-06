@@ -9,8 +9,9 @@ venv/
 ENV/
 build/
 develop-eggs/
-dist/
-downloads/
+# Downloads folder (keep directory structure, ignore downloaded files)
+downloads/*
+!downloads/.gitkeep
 *.egg-info/
 .installed.cfg
 *.egg
@@ -21,7 +22,8 @@ downloads/
 htmlcov/
 
 # Logs and databases
-logs/
+logs/*
+!logs/.gitkeep
 *.log
 config/*.db
 config/*.db-wal
