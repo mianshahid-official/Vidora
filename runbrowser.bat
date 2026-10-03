@@ -1,9 +1,9 @@
 @echo off
-title OmniDownloader Pro (Browser Mode)
+title Vidora (Browser Mode)
 cd /d "%~dp0"
 
 echo ========================================================
-echo   OmniDownloader Pro - Launching in Web Browser
+echo   Vidora - Launching in Web Browser
 echo   Local Address: http://localhost:8000
 echo ========================================================
 echo.

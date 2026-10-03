@@ -1,9 +1,9 @@
 @echo off
-title OmniDownloader Pro (Desktop App Mode)
+title Vidora (Desktop App Mode)
 cd /d "%~dp0"
 
 echo ========================================================
-echo   OmniDownloader Pro - Launching Native Desktop App
+echo   Vidora - Launching Native Desktop App
 echo ========================================================
 echo.
 

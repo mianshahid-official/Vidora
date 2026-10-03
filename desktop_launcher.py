@@ -7,7 +7,7 @@ import threading
 import urllib.request
 
 APP_URL = "http://127.0.0.1:8000"
-APP_TITLE = "OmniDownloader Pro"
+APP_TITLE = "Vidora"
 
 def find_browser_app_executable():
     # Candidates in order of preference for standalone --app window
@@ -50,7 +50,7 @@ def wait_for_server(url, timeout=10):
 
 def main():
     print("\n" + "=" * 60)
-    print("  OmniDownloader Pro - Launching Desktop Application")
+    print("  Vidora - Launching Desktop Application")
     print("=" * 60 + "\n")
     
     # 1. Start Server in Subprocess
@@ -76,11 +76,11 @@ def main():
                 "--window-size=1300,880",
                 "--window-position=80,40",
                 "--disable-background-networking",
-                f"--app-id=OmniDownloaderPro"
+                f"--app-id=Vidora"
             ]
             app_proc = subprocess.Popen(cmd)
             app_proc.wait()
-            print("[*] Desktop window closed. Shutting down OmniDownloader Pro...")
+            print("[*] Desktop window closed. Shutting down Vidora...")
         else:
             print("[!] No Chromium browser found for --app mode. Opening in default browser...")
             import webbrowser
@@ -97,7 +97,7 @@ def main():
                 server_process.wait(timeout=3)
             except subprocess.TimeoutExpired:
                 server_process.kill()
-        print("[✓] OmniDownloader Pro stopped.")
+        print("[✓] Vidora stopped.")
 
 if __name__ == "__main__":
     main()

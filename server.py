@@ -171,7 +171,7 @@ async def lifespan(app: FastAPI):
     for t in worker_tasks:
         t.cancel()
 
-app = FastAPI(title="OmniDownloader Pro", version="2.5.0", lifespan=lifespan)
+app = FastAPI(title="Vidora", version="2.5.0", lifespan=lifespan)
 
 app.add_middleware(
     CORSMiddleware,
@@ -1262,7 +1262,7 @@ app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
 if __name__ == "__main__":
     import uvicorn
     print("\n" + "="*60)
-    print("  OmniDownloader Pro - Universal Media & Channel Workstation")
+    print("  Vidora - Universal Media & Video Workstation")
     print(f"  Max Concurrent Downloads: {MAX_CONCURRENCY}")
     print("  Running on: http://localhost:8000")
     print("="*60 + "\n")

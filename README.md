@@ -1,6 +1,6 @@
-# OmniDownloader Pro — Universal Media Workstation
+# Vidora — Universal Media & Video Workstation
 
-A fast, lightweight, and modern standalone local media workstation. Built with FastAPI, Vanilla JS, and yt-dlp.
+A fast, lightweight, and modern standalone media workstation built with **FastAPI**, **Vanilla JS**, and **yt-dlp**.
 
 Supports single links, channels, playlists, and bulk batches across **Douyin (抖音)**, **YouTube**, **TikTok**, **Instagram**, **X (Twitter)**, **Facebook**, **Reddit**, and 1000+ platforms.
 
@@ -16,10 +16,11 @@ Supports single links, channels, playlists, and bulk batches across **Douyin (�
 6. **Dynamic Concurrency & Speed Control**: Configure simultaneous downloads (1, 2, 3, 4, 5, 8 at a time) with crash-proof async worker queues.
 7. **4-Column Ongoing Downloads Grid**: Real-time download speed (`MB/s`), progress bars, and ETA indicators.
 8. **Pause, Resume & Cancel Controls**: Pause active downloads to conserve bandwidth, resume at any time.
-9. **Timestamp Clip Extractor**: Trim and download specific video segments locally with zero quality loss.
-10. **In-Browser Media Player**: Preview and playback downloaded audio and video directly in the browser.
-11. **Dark / Light Mode**: Floating glassmorphic theme switcher.
-12. **Non-Destructive History Management**: Clear history from the UI while keeping physical files safe on your hard drive.
+9. **Dual Run Modes**: Run as a **Web Browser App** or as a **Standalone Native Desktop App**.
+10. **Timestamp Clip Extractor**: Trim and download specific video segments locally with zero quality loss.
+11. **In-Browser Media Player**: Preview and playback downloaded audio and video directly in the browser.
+12. **Dark / Light Mode**: Floating glassmorphic theme switcher.
+13. **Non-Destructive History Management**: Clear history from the UI while keeping physical files safe on your hard drive.
 
 ---
 
@@ -32,12 +33,10 @@ No API keys, third-party subscriptions, or tokens required.
    pip install -r requirements.txt
    ```
 
-2. **Start the application**:
-   - Double-click `start_downloader.bat`, or
-   - Run: `python server.py`
-
-3. **Open the web app**:
-   Navigate to [http://localhost:8000](http://localhost:8000) in your browser.
+2. **Launch Options**:
+   - 🖥️ **Desktop App Mode**: Double-click `run-app.bat`
+   - 🌐 **Web Browser Mode**: Double-click `runbrowser.bat`
+   - ⚡ **CLI / Terminal**: `python server.py` and open [http://localhost:8000](http://localhost:8000)
 
 ---
 
@@ -46,12 +45,14 @@ No API keys, third-party subscriptions, or tokens required.
 ```
 ├── server.py              # FastAPI backend & async worker queue
 ├── douyin_extractor.py    # Dedicated Douyin extractor
+├── desktop_launcher.py    # Native desktop window bootstrap
+├── run-app.bat            # Desktop App one-click launcher
+├── runbrowser.bat         # Web Browser one-click launcher
 ├── static/
 │   ├── index.html         # Modern web interface
 │   ├── style.css          # Glassmorphic responsive styles
 │   └── app.js             # Real-time state & API controllers
 ├── downloads/             # Local download target folder
-├── start_downloader.bat   # Windows one-click launcher
 ├── requirements.txt       # Python dependencies
 └── .gitignore             # Excludes downloads, cookies, and cache
 ```
