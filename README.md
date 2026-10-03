@@ -1,5 +1,9 @@
 # Vidora — Universal Media & Video Workstation
 
+<p align="center">
+  <img src="screenshot.png" alt="Vidora Interface Preview" width="100%" />
+</p>
+
 A fast, lightweight, and modern standalone media workstation built with **FastAPI**, **Vanilla JS**, and **yt-dlp**.
 
 Supports single links, channels, playlists, and bulk batches across **Douyin (抖音)**, **YouTube**, **TikTok**, **Instagram**, **X (Twitter)**, **Facebook**, **Reddit**, and 1000+ platforms.
