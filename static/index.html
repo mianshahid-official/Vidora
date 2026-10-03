@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniDownloader Pro — Universal Video & Audio Workstation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Ambient background glow effects -->
+  <div class="glow-orb orb-1"></div>
+  <div class="glow-orb orb-2"></div>
+  <div class="glow-orb orb-3"></div>
+
+  <!-- Floating Controls (Top Right Corner - Theme Toggle Only) -->
+  <div class="floating-top-bar">
+    <button id="themeToggleBtn" class="floating-icon-btn" title="Switch between Dark and Light mode">
+      <svg class="sun-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+  </div>
+
+  <div class="app-container">
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Mode Selector (Single vs Bulk / Playlist) -->
+      <div class="mode-selector">
+        <button id="singleModeBtn" class="mode-btn active">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="5 3 19 12 5 21 5 3"></polygon>
+          </svg>
+          Single Video
+        </button>
+        <button id="bulkModeBtn" class="mode-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          Bulk & Playlist Mode
+        </button>
+      </div>
+
+      <!-- Single Video Hero Section -->
+      <section id="singleInputSection" class="hero-section">
+        <h2 class="hero-title">Download Video & Audio from <span class="gradient-text">Douyin, YouTube & 1000+ Sites</span></h2>
+        <p class="hero-subtitle">Watermark-free Douyin & TikTok downloads, 4K/1080p, Auto ID3 tagging & Audio extraction.</p>
+
+        <!-- Input Box -->
+        <div class="search-card glass-panel">
+          <div class="input-wrapper">
+            <div class="input-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+              </svg>
+            </div>
+            <input 
+              type="url" 
+              id="urlInput" 
+              placeholder="Paste any link: Douyin (modal_id/video), YouTube, TikTok, Instagram, Twitter/X, Reddit..." 
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button id="pasteBtn" class="btn btn-ghost" title="Paste from clipboard">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+              Paste
+            </button>
+            <button id="clearBtn" class="btn btn-ghost hidden" title="Clear input">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+            <button id="analyzeBtn" class="btn btn-primary">
+              <span class="btn-text">Analyze</span>
+              <div class="spinner hidden"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Platform Badges -->
+        <div class="platform-chips">
+          <span class="chip douyin-chip"><span class="dot dy"></span>Douyin (抖音)</span>
+          <span class="chip"><span class="dot yt"></span>YouTube</span>
+          <span class="chip"><span class="dot tt"></span>TikTok</span>
+          <span class="chip"><span class="dot ig"></span>Instagram</span>
+          <span class="chip"><span class="dot tw"></span>Twitter / X</span>
+          <span class="chip"><span class="dot fb"></span>Facebook</span>
+          <span class="chip"><span class="dot rd"></span>Reddit</span>
+          <span class="chip"><span class="dot sc"></span>SoundCloud</span>
+          <span class="chip"><span class="dot pt"></span>Pinterest</span>
+          <span class="chip"><span class="dot vm"></span>Vimeo</span>
+          <span class="chip"><span class="dot more"></span>+1000 more</span>
+        </div>
+
+        <!-- Cookie Session Indicator & Quick Selector -->
+        <div class="cookie-session-row">
+          <button id="openCookieModalBtn" class="cookie-pill-btn" title="Configure browser session cookies for Instagram, X/Twitter, Facebook, YouTube & Douyin">
+            <span class="cookie-emoji">🍪</span>
+            <span class="cookie-label">Browser Session:</span>
+            <span id="activeCookieLabel" class="cookie-status-badge">Auto (Chrome/Edge)</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:14px;height:14px;">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+        </div>
+      </section>
+
+      <!-- Bulk / Playlist Input Section (Feature 1) -->
+      <section id="bulkInputSection" class="bulk-section hidden">
+        <div class="glass-panel bulk-card">
+          <div class="bulk-header">
+            <h3>📑 Bulk & Playlist Batch Downloader</h3>
+            <p>Paste multiple URLs (one per line) or a single YouTube/Douyin playlist link.</p>
+          </div>
+          <textarea id="bulkUrlsInput" rows="5" placeholder="https://www.douyin.com/jingxuan/child?modal_id=7673087416256826643&#10;https://www.youtube.com/watch?v=...&#10;https://www.tiktok.com/@.../video/..."></textarea>
+          <div class="bulk-actions">
+            <button id="bulkPasteBtn" class="btn btn-secondary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+              </svg>
+              Paste Links
+            </button>
+            <div class="concurrency-inline-widget">
+              <label for="concurrencySelectBulk">⚡ Download Speed & Concurrency:</label>
+              <select id="concurrencySelectBulk" class="concurrency-select">
+                <option value="1">1 at a time (Safe)</option>
+                <option value="2" selected>2 at a time (Recommended)</option>
+                <option value="3">3 at a time</option>
+                <option value="4">4 at a time</option>
+                <option value="5">5 at a time</option>
+                <option value="8">8 at a time (Fast)</option>
+              </select>
+            </div>
+            <button id="analyzeBulkBtn" class="btn btn-primary">
+              <span class="bulk-btn-text">Analyze All Links</span>
+              <div class="bulk-spinner spinner hidden"></div>
+            </button>
+          </div>
+        </div>
+
+        <!-- Bulk & Channel Results Queue Container -->
+        <div id="bulkQueueContainer" class="bulk-queue-container hidden">
+          <!-- Channel / Profile Info Banner (Shows when analyzing a channel/profile) -->
+          <div id="channelBanner" class="channel-banner glass-panel hidden">
+            <div class="channel-avatar-wrap">
+              <img id="channelAvatar" src="" alt="Channel Avatar" class="channel-avatar">
+            </div>
+            <div class="channel-details">
+              <div class="channel-title-row">
+                <h3 id="channelTitle" class="channel-title">Channel Name</h3>
+                <span id="channelPlatformBadge" class="platform-pill">YouTube</span>
+              </div>
+              <p id="channelAuthor" class="channel-author">@creator</p>
+              <div class="channel-stats-row">
+                <span class="stat-badge"><strong id="statTotalCount">0</strong> Total Videos</span>
+                <span class="stat-badge"><strong id="statLongCount">0</strong> 🎬 Long Videos</span>
+                <span class="stat-badge"><strong id="statShortCount">0</strong> ⚡ Shorts & Reels</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bulk-queue-header">
+            <div class="filter-pills-bar">
+              <button class="filter-pill active" data-filter="all">All Videos (<span id="pillCountAll">0</span>)</button>
+              <button class="filter-pill" data-filter="long">🎬 Long Videos (<span id="pillCountLong">0</span>)</button>
+              <button class="filter-pill" data-filter="short">⚡ Shorts & Reels (<span id="pillCountShort">0</span>)</button>
+            </div>
+            <div class="bulk-queue-btns">
+              <button id="downloadAllVideoBtn" class="btn btn-primary btn-sm">Download All Videos (MP4)</button>
+              <button id="downloadAllAudioBtn" class="btn btn-secondary btn-sm">Download All Audio (MP3)</button>
+              <button id="downloadAllTranscriptBtn" class="btn btn-secondary btn-sm">📝 Transcripts (.txt)</button>
+            </div>
+          </div>
+          <div id="bulkQueueList" class="bulk-queue-list"></div>
+        </div>
+      </section>
+
+      <!-- Alert / Status Notifications -->
+      <div id="alertBox" class="alert-box hidden">
+        <div class="alert-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+        </div>
+        <div id="alertMessage" class="alert-content"></div>
+      </div>
+
+      <!-- Active Downloads Section (4-Column Grid) -->
+      <section id="activeDownloadsSection" class="active-downloads-section hidden">
+        <div class="section-header">
+          <div class="title-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            <h3>Active Queue & Downloads</h3>
+          </div>
+          <div class="active-queue-badges">
+            <span id="activeCountBadge" class="status-badge active-badge">0 Downloading</span>
+            <span id="queuedCountBadge" class="status-badge queued-badge">0 Queued</span>
+          </div>
+        </div>
+        <div id="tasksList" class="tasks-grid"></div>
+      </section>
+
+      <!-- Result Card (Populated after single video analysis) -->
+      <section id="resultSection" class="result-section hidden">
+        <div class="media-card glass-panel">
+          <div class="media-preview">
+            <div class="thumbnail-wrapper">
+              <img id="mediaThumbnail" src="" alt="Thumbnail preview">
+              <span id="mediaDuration" class="duration-badge">00:00</span>
+              <span id="mediaPlatform" class="platform-badge">YouTube</span>
+            </div>
+            <button id="quickPreviewBtn" class="btn btn-secondary preview-action-btn" title="Instant Web Player Preview">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+              Watch Video Preview
+            </button>
+          </div>
+          <div class="media-details">
+            <h3 id="mediaTitle" class="media-title">Video Title</h3>
+            <div class="meta-row">
+              <span class="meta-item author">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span id="mediaAuthor">Author</span>
+              </span>
+              <span class="meta-item views" id="mediaViewsWrapper">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+                <span id="mediaViews">0 views</span>
+              </span>
+            </div>
+
+            <!-- Custom Title Input -->
+            <div class="custom-name-wrapper">
+              <label for="customTitleInput">Save As (Optional):</label>
+              <input type="text" id="customTitleInput" placeholder="Custom filename...">
+            </div>
+
+            <!-- Feature 2: Timestamp Clip Extractor (Trim Settings) -->
+            <div class="trim-settings-card">
+              <div class="trim-header">
+                <div class="trim-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="6" cy="6" r="3"></circle>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <line x1="20" y1="4" x2="8.12" y2="15.88"></line>
+                    <line x1="14.47" y1="14.48" x2="20" y2="20"></line>
+                    <line x1="8.12" y1="8.12" x2="12" y2="12"></line>
+                  </svg>
+                  <span>Trim Clip (Feature 2 - Optional)</span>
+                </div>
+                <span class="trim-hint">Leave blank to download entire video</span>
+              </div>
+              <div class="trim-inputs">
+                <div class="time-field">
+                  <label>Start Time (HH:MM:SS / MM:SS):</label>
+                  <input type="text" id="trimStartInput" placeholder="00:00:00" />
+                </div>
+                <div class="time-field">
+                  <label>End Time (HH:MM:SS / MM:SS):</label>
+                  <input type="text" id="trimEndInput" placeholder="00:00:00" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Companion Transcript Checkbox -->
+            <div class="transcript-companion-card">
+              <label class="checkbox-container">
+                <input type="checkbox" id="includeTranscriptCheck" checked>
+                <span class="checkmark"></span>
+                <span class="checkbox-text">
+                  <strong>📝 Also Save Clean Transcript (.txt)</strong>
+                  <small>Generates a companion <code>.txt</code> file with timestamps in your downloads folder</small>
+                </span>
+              </label>
+            </div>
+
+            <!-- Download Formats & Options -->
+            <div class="formats-container">
+              <div class="formats-tabs">
+                <button class="tab-btn active" data-tab="video">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="23 7 16 12 23 17 23 7"></polygon>
+                    <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                  </svg>
+                  Video Formats
+                </button>
+                <button class="tab-btn" data-tab="audio">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                  </svg>
+                  Audio Only (ID3 Tagged)
+                </button>
+                <button class="tab-btn" data-tab="subtitles">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                  </svg>
+                  Subtitles
+                </button>
+              </div>
+
+              <!-- Video Tab Content -->
+              <div id="videoTab" class="tab-content active">
+                <div id="videoPresetsGrid" class="presets-grid"></div>
+              </div>
+
+              <!-- Audio Tab Content (Feature 3: ID3 tagged) -->
+              <div id="audioTab" class="tab-content">
+                <div class="id3-badge-notice">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 14 14"></polyline>
+                  </svg>
+                  <span>Auto ID3 Tags Active: High-res album artwork, Artist, & Title are automatically embedded into MP3/M4A.</span>
+                </div>
+                <div id="audioPresetsGrid" class="presets-grid"></div>
+              </div>
+
+              <!-- Subtitles Tab Content (Feature 4) -->
+              <div id="subtitlesTab" class="tab-content">
+                <div id="subtitlesGrid" class="subtitles-grid">
+                  <p class="no-subs">No external subtitle tracks detected for this media stream.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Library / Completed Downloads Section -->
+      <section id="librarySection" class="library-section">
+        <div class="section-header">
+          <div class="title-with-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            </svg>
+            <h3>Downloads Library</h3>
+          </div>
+          <div class="library-controls">
+            <button id="openFolderLibraryBtn" class="btn btn-secondary btn-sm" title="Open folder on computer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              </svg>
+              Open Folder
+            </button>
+            <button id="refreshLibraryBtn" class="btn btn-ghost btn-sm" title="Refresh list">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="23 4 23 10 17 10"></polyline>
+                <polyline points="1 20 1 14 7 14"></polyline>
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+              </svg>
+              Refresh
+            </button>
+            <button id="clearHistoryBtn" class="btn btn-danger-ghost btn-sm" title="Clear all downloads from history and disk">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="3 6 5 6 21 6"></polyline>
+                <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+              </svg>
+              Clear History
+            </button>
+          </div>
+        </div>
+
+        <div id="libraryList" class="library-grid">
+          <div class="empty-state">
+            <p>No downloads yet. Paste a link above to start downloading!</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- In-Browser Media Player Modal (Feature 7) -->
+    <div id="playerModal" class="modal-overlay hidden">
+      <div class="player-modal glass-panel">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="now-playing-badge">NOW PLAYING</span>
+            <h4 id="playerTitle">Media Title</h4>
+          </div>
+          <button id="closeModalBtn" class="btn btn-ghost close-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="player-media-wrap">
+          <video id="modalVideoPlayer" controls autoplay playsinline class="modal-video hidden"></video>
+          <div id="modalAudioWrap" class="modal-audio-wrap hidden">
+            <div class="audio-disc-art">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <circle cx="12" cy="12" r="10"></circle>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </div>
+            <audio id="modalAudioPlayer" controls class="modal-audio"></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Browser Cookie Settings Modal -->
+    <div id="cookieModal" class="modal-overlay hidden">
+      <div class="cookie-modal glass-panel">
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <span class="now-playing-badge" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b; border-color: rgba(245, 158, 11, 0.3);">AUTHENTICATION & SESSION</span>
+            <h4>🍪 Browser Cookie & Login Sessions</h4>
+          </div>
+          <button id="closeCookieModalBtn" class="btn btn-ghost close-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="cookie-modal-body">
+          <p class="cookie-modal-desc">
+            Use your logged-in browser session to download private, members-only, or age-restricted videos from <strong>Instagram, X (Twitter), Facebook, YouTube, TikTok, and Douyin</strong>.
+          </p>
+
+          <div class="cookie-option-group">
+            <label class="cookie-group-title">Select Active Browser Session:</label>
+            <div class="browser-options-grid">
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="auto" checked>
+                <div class="radio-card-content">
+                  <span class="browser-icon">⚡</span>
+                  <div>
+                    <strong>Auto-Detect</strong>
+                    <small>Auto-extracts cookies from Chrome/Edge</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="chrome">
+                <div class="radio-card-content">
+                  <span class="browser-icon">🌐</span>
+                  <div>
+                    <strong>Google Chrome</strong>
+                    <small>Use active Chrome profile cookies</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="edge">
+                <div class="radio-card-content">
+                  <span class="browser-icon">🟦</span>
+                  <div>
+                    <strong>Microsoft Edge</strong>
+                    <small>Use active Edge profile cookies</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="firefox">
+                <div class="radio-card-content">
+                  <span class="browser-icon">🦊</span>
+                  <div>
+                    <strong>Mozilla Firefox</strong>
+                    <small>Use active Firefox profile cookies</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="brave">
+                <div class="radio-card-content">
+                  <span class="browser-icon">🦁</span>
+                  <div>
+                    <strong>Brave Browser</strong>
+                    <small>Use active Brave profile cookies</small>
+                  </div>
+                </div>
+              </label>
+
+              <label class="browser-radio-card">
+                <input type="radio" name="browserCookieOption" value="none">
+                <div class="radio-card-content">
+                  <span class="browser-icon">🚫</span>
+                  <div>
+                    <strong>Disabled</strong>
+                    <small>Download anonymously without cookies</small>
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <div class="custom-cookies-section">
+            <div class="custom-cookies-header">
+              <label><strong>Custom <code>cookies.txt</code> File / Paste (Netscape Format):</strong></label>
+              <span id="customCookieStatus" class="custom-cookie-status">No custom file</span>
+            </div>
+            <textarea id="customCookiesInput" rows="3" placeholder="# Netscape HTTP Cookie File&#10;.instagram.com&#9;TRUE&#9;/&#9;TRUE&#9;1799999999&#9;sessionid&#9;...&#10;.youtube.com&#9;TRUE&#9;/&#9;TRUE&#9;..."></textarea>
+            <div class="custom-cookies-actions">
+              <button id="uploadCookiesBtn" class="btn btn-secondary btn-sm">Save Custom cookies.txt</button>
+              <button id="clearCookiesFileBtn" class="btn btn-danger-ghost btn-sm hidden">Remove cookies.txt</button>
+            </div>
+          </div>
+        </div>
+        <div class="cookie-modal-footer">
+          <button id="saveCookieSettingsBtn" class="btn btn-primary">Apply & Save Session</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>OmniDownloader Pro • Universal Local Downloader</p>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

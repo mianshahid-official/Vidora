@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+.venv/
+
+# App-specific data & personal session cookies (DO NOT PUSH)
+downloads/
+cookies.txt
+cookie_settings.json
+cleared_history.json
+*.part
+*.ytdl
+
+# Environment & IDE
+.env
+.env.*
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+Downloader/
